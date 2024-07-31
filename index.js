@@ -1,13 +1,21 @@
-/*
-Challenge:
-Make it so that when you click the 'Add to cart' button, whatever is written in the input field should be console logged.
-*/
+"use strict";
 
 const inputFieldEl = document.getElementById("input-field");
 const addButtonEl = document.getElementById("add-button");
+const inputList = document.getElementById("inputList");
+
+function addToInputList(text){
+    // Add text to "Shopping List" display
+    
+    let listItem = document.createElement("p");
+    listItem.classList.add("list-item");
+    listItem.textContent = text;
+    inputList.appendChild(listItem);
+}
 
 addButtonEl.addEventListener("click", function() {
     let inputValue = inputFieldEl.value;
+    inputFieldEl.value = null;  // reset input field
     
     // -- Edge Cases --
     // String is white space only, or has redundant white space.
@@ -20,4 +28,6 @@ addButtonEl.addEventListener("click", function() {
 
 
     console.log(inputValue);
+
+    addToInputList(inputValue);
 });
