@@ -1,8 +1,18 @@
 "use strict";
 
+// ----- Get references to working parts -----
 const inputFieldEl = document.getElementById("input-field");
 const addButtonEl = document.getElementById("add-button");
-const inputList = document.getElementById("inputList");
+const clearAllButton = document.getElementById("clearall-button");
+const clearSelectedButton = document.getElementById("clearselect-button");
+const inputList = document.getElementById("input-list");
+
+// ----- Declare Functionality -----
+function selectItem() {
+    // Special event function for "list-item" elements
+    // Toggles the "selected" class
+    this.classList.toggle("selected");
+}
 
 function addToInputList(text){
     // Add text to "Shopping List" display
@@ -10,10 +20,26 @@ function addToInputList(text){
     let listItem = document.createElement("p");
     listItem.classList.add("list-item");
     listItem.textContent = text;
+    listItem.addEventListener("click", selectItem);
+
     inputList.appendChild(listItem);
 }
 
-addButtonEl.addEventListener("click", function() {
+function clearSelected(){
+    // Remove elements with the "selected" class
+    let unwanted = Array.from(document.getElementsByClassName("selected"));
+
+    for (let node of unwanted) { 
+        node.remove();
+    }
+}
+
+function clearInputList(){
+    // Clear all items in "Shopping List" display
+    inputList.innerHTML = "";
+}
+
+function handleUserInput() {
     let inputValue = inputFieldEl.value;
     inputFieldEl.value = null;  // reset input field
     
@@ -30,4 +56,13 @@ addButtonEl.addEventListener("click", function() {
     console.log(inputValue);
 
     addToInputList(inputValue);
+}
+
+
+// ----- Hook up functionality -----
+addButtonEl.addEventListener("click", handleUserInput);
+inputFieldEl.addEventListener("keypress", function(event){
+    if (event.key === "Enter"){ handleUserInput(); }
 });
+clearAllButton.addEventListener("click", clearInputList);
+clearSelectedButton.addEventListener("click", clearSelected);

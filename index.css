@@ -18,7 +18,8 @@ html, body {
 
 #input-field,
 #add-button,
-#clearall-button {
+#clearall-button,
+#clearselect-button {
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -43,4 +44,9 @@ html, body {
     border-radius: 5px;
     padding: 3px 5px;
     margin: 4px;
+    cursor:default;
+}
+
+.selected {
+    background-color: greenyellow;
 }
