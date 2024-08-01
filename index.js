@@ -1,4 +1,19 @@
 "use strict";
+import { firebaseConfig } from "./secrets.js";  // avoid exposing api keys on public repo
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import { 
+    getDatabase,
+    ref,
+    push,
+    onValue,
+    get
+} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-database.js";
+
+// ----- Initialize Firebase & Database -----
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const dataLocation = ref(database, "shopList/");
 
 // ----- Get references to working parts -----
 const inputFieldEl = document.getElementById("input-field");
