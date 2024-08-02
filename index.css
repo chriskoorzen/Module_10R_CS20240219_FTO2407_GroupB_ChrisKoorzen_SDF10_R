@@ -1,17 +1,25 @@
 html, body {
     margin: 0;
     padding: 0;
+    background-color: #EEF0F4;
+}
+
+hr {
+    margin: 0;
 }
 
 #view-box {
     display: block;
     width: 300px;
+    max-height: 600px;
+    padding: 18px;
+    padding-bottom: 0px;
     margin: 0 auto;
 }
 
 #header-image {
     display: block;
-    height: 150px;
+    height: 100px;
     margin: 0 auto;
     opacity: 70%;
 }
@@ -23,7 +31,26 @@ html, body {
     display: block;
     box-sizing: border-box;
     width: 100%;
+    margin: 7px auto;
+    padding: 12px 10px;
+    border-radius: 6px;
+    border: none;
 }
+
+/* Forgive the horrible color scheme */
+#add-button,
+#clearall-button,
+#clearselect-button { 
+    background-color: lightgray; 
+}
+#add-button:hover,
+#clearall-button:hover,
+#clearselect-button:hover { 
+    background-color: darkgray; 
+}
+#add-button:active { background-color: rgb(101, 165, 5); }
+#clearall-button:active { background-color: rgb(218, 70, 12); }
+#clearselect-button:active { background-color: rgb(247, 193, 46); }
 
 #clearall-button {
     position: relative;
@@ -31,22 +58,31 @@ html, body {
 }
 
 #input-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: flex-start;    /* dont stretch -> keep size and start from top left */
+    align-content: flex-start;  /* place wrap midline at top */
     min-height: 150px;
-    background-color: bisque;
-    margin: 10px 0;
+    max-height: 300px;
+    overflow-y: scroll;         /* enable scrolling through large lists */
+    padding: 0 8px;
+    margin: 0;
     border-radius: 3px;
 }
 
 .list-item {
     display: inline-block;
-    background-color: antiquewhite;
-    border: 1px solid black;
+    background-color: white;
+    box-shadow: 2px 2px lightgrey;
+    /* border: 1px solid black; */
     border-radius: 5px;
-    padding: 3px 5px;
+    padding: 5px 5px;
     margin: 4px;
-    cursor:default;
+    cursor: pointer;
+    flex-grow: 1;
 }
 
 .selected {
-    background-color: greenyellow;
+    background-color: lightpink;
 }
