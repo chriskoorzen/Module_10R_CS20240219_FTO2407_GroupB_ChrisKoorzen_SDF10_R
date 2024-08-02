@@ -22,13 +22,13 @@ const inputFieldEl = document.getElementById("input-field");
 const addButtonEl = document.getElementById("add-button");
 const clearAllButton = document.getElementById("clearall-button");
 const clearSelectedButton = document.getElementById("clearselect-button");
-const inputList = document.getElementById("input-list");
+const inputList = document.getElementById("input-list");                        // "Shopping List" display
 
 
 // ----- Declare Functionality -----
 function selectItem(){
     // Special event function for "list-item" elements
-    // Toggles the "selected" class
+    // Toggles the "selected" class on the calling DOM element
     this.classList.toggle("selected");
 }
 
@@ -44,6 +44,7 @@ function addToInputList(text, UUID){
     inputList.appendChild(listItem);
 }
 
+// Database interaction functions
 function clearSelected(){
     // Remove elements with the "selected" class
     let unwanted = Array.from(document.getElementsByClassName("selected"));
@@ -117,7 +118,7 @@ function loadServerData(){
     // Retrieve from server
     get(dataLocation).then(
         (snapshot) => {
-            const data = snapshot.val();
+            let data = snapshot.val();
             for (let key in data){ addToInputList(data[key], key); }
 
         }).catch(
